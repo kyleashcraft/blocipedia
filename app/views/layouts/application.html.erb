@@ -12,6 +12,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <p class="navbar-brand"><%= link_to 'Blocipedia', root_path %></p>
+        <span class="navbar-text"><%= link_to 'Wikis', wiki_index_path %></span>
         <% if user_signed_in? %>
           <div class="navbar-text navbar-right">
             Signed in as: <strong><%= current_user.email %></strong> |
@@ -28,8 +29,8 @@
     <div class="container">
       <% if flash[:notice] %>
         <div class="container">
-          <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <button type="button" class="Close" data-dismiss="alert">
+          <div class="alert alert-info data-dismissible show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
               <span aria-hidden="true">&times;</span>
             </button>
             <%= flash[:notice] %>

@@ -1,2 +1,17 @@
-<h1>Wiki#index</h1>
-<p>Find me in app/views/wiki/index.html.erb</p>
+<span>
+  <h1>
+    Wikis
+    <% if current_user %>
+      <%= link_to 'New', new_wiki_path, type: 'button', class: 'btn btn-success' %>
+    <% end %>
+  </h1>
+</span>
+<div class="row">
+  <div class="col-md-8">
+    <div class="list-group justify-content-between">
+      <% @wikis.each do |wiki| %>
+        <%= link_to wiki.title, wiki, class: 'list-group-item list-group-item-action' %>
+      <% end %>
+    </div>
+  </div>
+</div>

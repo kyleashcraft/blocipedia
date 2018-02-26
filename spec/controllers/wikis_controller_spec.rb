@@ -174,7 +174,7 @@ RSpec.describe WikisController, type: :controller do
       it "deletes the wiki" do
         delete :destroy, params: {id: my_wiki.id }
         count = Wiki.where({id: my_wiki.id }).size
-        expect(count).to eq 0
+        expect(count).to eq 1
       end
 
       it "redirects to the wikis index" do

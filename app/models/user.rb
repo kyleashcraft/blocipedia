@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :wiki
+
+  enum role: [:standard, :premium, :admin]
+
+  after_initialize :initialize_role
+
+  private
+    def initialize_role
+      self.role ||= :standard
+    end
 end

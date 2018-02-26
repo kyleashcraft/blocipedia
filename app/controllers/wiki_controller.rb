@@ -16,12 +16,10 @@ class WikiController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
+    @wiki.private ||= false
+    
     if @wiki.save
-      Wiki.update(@wiki.id, :private => false) unless @wiki.private == true #TODO: temporary hardcode fix for html form issue, come back and fix new.html.erb
       flash[:notice] = "Wiki was saved."
-      if flash[:notice]
-         p flash[:notice]
-      end
       redirect_to @wiki
     else
       flash.now[:alert] = "There was an error saving your wiki. Please try again."

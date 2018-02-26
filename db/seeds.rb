@@ -7,26 +7,58 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'random_data'
 
-5.times do
+10.times do
   User.create!(
-    email: RandomData.random_email,
+    email: Faker::Internet.unique.email,
     password: 'password'
   )
 end
 
-users = User.all
-
-puts "#{users.count} users created."
-
-15.times do
-  Wiki.create!(
-    title: RandomData.random_word,
-    body: RandomData.random_paragraph,
-    private: false,
-    user: users.sample
+5.times do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: 'password2',
+    role: 1
   )
 end
 
+User.create!(
+  email: "admin@blocipedia.com",
+  password: 'password3',
+  role: 2
+)
+
+standard_users = User.where(role: 0).all
+premium_users = User.where(role: 1).all
+admin = User.where(role: 2).all
+
+users = User.all
+
+puts "#{standard_users.count} standard users created."
+puts "#{premium_users.count} premium users created."
+puts "#{admin.count} admin created."
+
+20.times do
+  Wiki.create!(
+    title: Faker::Hipster.unique.sentence,
+    body: Faker::Hipster.unique.paragraph,
+    user: users.sample,
+    private: false
+  )
+end
+
+5.times do
+  Wiki.create(
+    title: Faker::Hipster.unique.sentence,
+    body: Faker::Hipster.unique.paragraph,
+    user: users.sample,
+    private: true
+  )
+end
+
+public_wikis = Wiki.where(private: false).all
+private_wikis = Wiki.where(private: true).all
 wikis = Wiki.all
 
-puts "#{wikis.count} wikis created."
+puts "#{public_wikis.count} public wikis created."
+puts "#{private_wikis.count} private wikis created."

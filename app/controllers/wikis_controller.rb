@@ -1,4 +1,4 @@
-class WikiController < ApplicationController
+class WikisController < ApplicationController
   before_action :authorize_user, except: [:index, :show]
 
   def index
@@ -17,7 +17,7 @@ class WikiController < ApplicationController
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
     @wiki.private ||= false
-    
+
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
@@ -49,7 +49,7 @@ class WikiController < ApplicationController
     @wiki = Wiki.find(params[:id])
     if @wiki.destroy
       flash[:notice] = "Wiki successfully deleted."
-      redirect_to wiki_index_path
+      redirect_to wikis_path
     else
       flash[:alert] = "Error deleting wiki, please try again."
     end

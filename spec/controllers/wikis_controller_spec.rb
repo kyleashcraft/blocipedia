@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'random_data'
 include Warden::Test::Helpers
 
-RSpec.describe WikiController, type: :controller do
+RSpec.describe WikisController, type: :controller do
 
   include Devise::Test::ControllerHelpers
 
@@ -124,7 +124,7 @@ RSpec.describe WikiController, type: :controller do
 
       it "redirects to the wikis index" do
         delete :destroy, params: {id: my_wiki.id}
-        expect(response).to redirect_to wiki_index_path
+        expect(response).to redirect_to wikis_path
       end
     end
   end
@@ -179,7 +179,7 @@ RSpec.describe WikiController, type: :controller do
 
       it "redirects to the wikis index" do
         delete :destroy, params: {id: my_wiki.id}
-        expect(response).to redirect_to wiki_index_path
+        expect(response).to redirect_to wikis_path
       end
     end
   end

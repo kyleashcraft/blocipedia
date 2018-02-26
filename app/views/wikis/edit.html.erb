@@ -1,0 +1,20 @@
+<div class="col-md-8">
+  <%= form_for(@Wiki, url: wiki_path, method: :patch) do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, placeholder: "Enter Wiki title" %>
+    </div>
+    <br/>
+
+    <%= f.label :body %>
+    <%= f.text_field :body, placeholder: "Enter Wiki body" %>
+    <br/>
+
+    <%= f.label :private %>
+    <%= f.check_box :private, {}, checked_value = true, unchecked_value = false %>
+    <br/>
+
+    <%= f.submit %>
+
+  <% end %>
+</div>

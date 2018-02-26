@@ -1,0 +1,11 @@
+<h1>
+  <%= @wiki.title %>
+  <small class="text-muted">
+    <%= @wiki.created_at.to_formatted_s(:short) %>
+  </small>
+  <% if current_user == @wiki.user %>
+    <%= link_to 'Delete', wiki_path(@wiki), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
+    <%= link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-info' %>  
+  <% end %>
+</h1>
+<p><%= @wiki.body %></p>

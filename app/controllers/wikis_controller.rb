@@ -21,7 +21,6 @@ class WikisController < ApplicationController
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
-    @wiki.private ||= false
 
     authorize @wiki
 

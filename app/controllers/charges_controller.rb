@@ -14,7 +14,9 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
+
     flash[:notice] = "Thank you for purchasing premium, #{current_user.email}!"
+    current_user.premium!
     redirect_to root_path
 
   rescue Stripe::CardError => e #display stripe card errors
@@ -28,6 +30,12 @@ class ChargesController < ApplicationController
       description: "Blocipedia Premium - #{current_user.email}",
       amount: Amount.default
     }
+  end
+
+  def destroy
+    @user = current_user
+    @user.standard!
+    flash[:notice] = "#{current_user.email} successfully downgraded to standard account"
   end
 
 end

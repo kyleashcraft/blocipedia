@@ -1,5 +1,5 @@
 module Amount
   def self.default
-    10_00
+    15_00
   end
 end

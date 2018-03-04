@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :wikis
+
   resources :charges, only: [:new, :create]
+
+  delete 'destroy_charge', action: :destroy, controller: 'charges'
 
   root 'welcome#index'
 

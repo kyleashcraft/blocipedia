@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
-  delete 'destroy_charge', action: :destroy, controller: 'charges'
+  put 'downgrade_user', action: :downgrade, controller: 'users'
 
   root 'welcome#index'
 

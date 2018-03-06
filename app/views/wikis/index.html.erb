@@ -10,7 +10,9 @@
   <div class="col-md-8">
     <div class="list-group justify-content-between">
       <% @wikis.each do |wiki| %>
-        <%= link_to wiki.title, wiki, class: 'list-group-item list-group-item-action' %>
+        <% if wiki.private == false || (wiki.private == true && (current_user.premium? || current_user.admin?)) %>
+          <%= link_to wiki.title, wiki, class: 'list-group-item list-group-item-action' %>
+        <% end %>
       <% end %>
     </div>
   </div>

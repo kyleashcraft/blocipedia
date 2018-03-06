@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 class ChargesController < ApplicationController
   require 'amount'
 
@@ -30,12 +32,6 @@ class ChargesController < ApplicationController
       description: "Blocipedia Premium - #{current_user.email}",
       amount: Amount.default
     }
-  end
-
-  def destroy
-    @user = current_user
-    @user.standard!
-    flash[:notice] = "#{current_user.email} successfully downgraded to standard account"
   end
 
 end

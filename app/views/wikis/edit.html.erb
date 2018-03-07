@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div>
   <%= form_for(@Wiki, url: wiki_path, method: :patch) do |f| %>
     <div class="form-group">
       <%= f.label :title %>
@@ -7,12 +7,14 @@
     <br/>
 
     <%= f.label :body %>
-    <%= f.text_field :body, placeholder: "Enter Wiki body" %>
+    <%= f.text_area :body, placeholder: "Enter Wiki body", size: "100x20"%>
     <br/>
 
-    <%= f.label :private %>
-    <%= f.check_box :private, {}, checked_value = true, unchecked_value = false %>
-    <br/>
+    <% if current_user.premium? %>
+      <%= f.label :private %>
+      <%= f.check_box :private %>
+      <br/>
+    <% end %>
 
     <%= f.submit %>
 

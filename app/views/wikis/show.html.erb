@@ -5,6 +5,8 @@
   </small>
   <% if current_user == @wiki.user %>
     <%= link_to 'Delete', wiki_path(@wiki), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this Wiki?'} %>
+  <% end %>
+  <% if current_user %>
     <%= link_to 'Edit', edit_wiki_path(@wiki), class: 'btn btn-info' %>
   <% end %>
 </h1>

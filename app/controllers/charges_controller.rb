@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 class ChargesController < ApplicationController
   require 'amount'
 

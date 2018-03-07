@@ -1,22 +1,12 @@
-require 'rails_helper'
-
 class UsersController < ApplicationController
 
   def downgrade
-    @user = current_user
-    @user.update(role: "standard")
-    puts "From controller"
-    p @user
-    binding.pry
-    p Wiki.where(user_id: @user.id)
-    if @user.downgrade_wikis
-      flash["You have been downgraded to standard."]
-      redirect_to root_path
+    if current_user.standard_downgrade
+      flash[:notice] = "User membership switched to standard. All private wikis are now public."
+      redirect_to wikis_path
     else
-      flash.now["Error downgrading account, please try again."]
+      flash.now[:alert] = "Account downgrade failed"
     end
-
-    puts "\n \n"
   end
 
 end

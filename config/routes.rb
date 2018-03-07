@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create]
 
-  put 'downgrade_user', action: :downgrade, controller: 'users'
+  put 'users/downgrade_user', action: :downgrade, controller: 'users'
 
   root 'welcome#index'
 

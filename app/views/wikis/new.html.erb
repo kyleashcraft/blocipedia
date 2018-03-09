@@ -2,12 +2,12 @@
   <%= form_for(@wiki, url: wikis_path, method: :post) do |f| %>
     <div class="form-group">
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: "Enter Wiki title" %>
+      <%= f.text_field :title, placeholder: "Enter Wiki title", class: 'form-control' %>
     </div>
     <br/>
 
     <%= f.label :body %>
-    <%= f.text_field :body, placeholder: "Enter Wiki body" %>
+    <%= f.text_area :body, placeholder: "Enter Wiki body", size: "100x20", class: 'form-control' %>
     <br/>
 
     <% if current_user.premium? || current_user.admin? %>

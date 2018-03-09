@@ -17,14 +17,14 @@ end
 5.times do
   User.create!(
     email: Faker::Internet.unique.email,
-    password: 'password2',
+    password: 'password',
     role: 1
   )
 end
 
 User.create!(
   email: "admin@blocipedia.com",
-  password: 'password3',
+  password: 'password',
   role: 2
 )
 
@@ -62,3 +62,11 @@ wikis = Wiki.all
 
 puts "#{public_wikis.count} public wikis created."
 puts "#{private_wikis.count} private wikis created."
+
+
+collab = Collaborator.create(
+  user: premium_users.sample,
+  wiki: private_wikis.sample
+)
+
+puts "#{collab.user.email} added as a collaborator for #{collab.wiki.title} which is owned by #{collab.wiki.user.email}"

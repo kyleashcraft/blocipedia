@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 module WikisHelper
   def markdown(text)
     options = {

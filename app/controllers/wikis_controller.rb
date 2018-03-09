@@ -1,13 +1,10 @@
-require 'redcarpet'
-
 class WikisController < ApplicationController
   before_action :authorize_user, except: [:index, :show]
 
   include Pundit
 
   def index
-    @wikis = Wiki.all
-    authorize @wikis
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -36,19 +33,19 @@ class WikisController < ApplicationController
   end
 
   def edit
-    @Wiki = Wiki.find(params[:id])
-    authorize @Wiki
+    @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
-    @Wiki = Wiki.find(params[:id])
-    @Wiki.assign_attributes(wiki_params)
+    @wiki = Wiki.find(params[:id])
+    @wiki.assign_attributes(wiki_params)
 
-    authorize @Wiki
+    authorize @wiki
 
-    if @Wiki.save
+    if @wiki.save
       flash[:notice] = "Wiki was saved."
-      redirect_to @Wiki
+      redirect_to @wiki
     else
       flash.now[:alert] = "There was an error saving your wiki. Please try again."
       render :edit

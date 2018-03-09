@@ -1,0 +1,6 @@
+<li class="list-inline-item">
+  <%= user.email %>
+  <% if current_user == @wiki.user %>
+    <%= link_to "Remove", wiki_collaborator_path(@wiki, collab.id), method: :delete, class: 'btn btn-link' %>
+  <% end %>
+</li>
